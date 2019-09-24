@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: air-carrier
+  labels:
+    customer: airtrip
+spec:
+  selector:
+    matchLabels:
+      app: carrier
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: carrier
+    spec:
+      containers:
+      - image: nguyenminh/air_carrier:0.01
+        name: web-ctr
+        ports:
+        - containerPort: 8080
